@@ -1,5 +1,7 @@
 import random
+
 import arcade
+from pyglet.graphics import Batch
 
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 700
@@ -11,6 +13,30 @@ CAMERA_LERP = 0.12
 # Размеры мёртвой зоны камеры
 DEAD_ZONE_W = int(SCREEN_WIDTH * 0.35)
 DEAD_ZONE_H = int(SCREEN_HEIGHT * 0.45)
+
+
+class StartView(arcade.View):
+    def on_show(self):
+        """Настройка начального экрана"""
+        arcade.set_background_color(arcade.color.BLACK)
+
+    def on_draw(self):
+        """Отрисовка начального экрана"""
+        self.clear()
+
+        # Батч для текста
+        self.batch = Batch()
+        start_text = arcade.Text("Заколдованный замок", self.window.width / 2, self.window.height / 2,
+                                 arcade.color.WHITE, font_size=50, anchor_x="center", batch=self.batch)
+        any_key_text = arcade.Text("Any key to start",
+                                   self.window.width / 2, self.window.height / 2 - 75,
+                                   arcade.color.GRAY, font_size=20, anchor_x="center", batch=self.batch)
+
+        self.batch.draw()
+
+    def on_key_press(self, key, modifiers):
+        """Начало игры при нажатии клавиши"""
+        self.window.show_view(LevelFirst())
 
 
 class LevelFirst(arcade.View):
@@ -74,9 +100,12 @@ class LevelFirst(arcade.View):
         for _ in range(random.randint(10, 15)):
             self.gems_list.append(arcade.Sprite(
                 ':resources:images/items/gemBlue.png', TILE_SCALING / 3,
-                70 * random.randint(1 + 1, 14 - 1),
-                70 * random.randint(1 + 1, 6 - 1)
+                                                       70 * random.randint(1 + 1, 14 - 1),
+                                                       70 * random.randint(1 + 1, 6 - 1)
             ))
+        self.gems = len(self.gems_list)
+
+        self.batch = Batch()
 
     def on_draw(self):
         """Отрисовка экрана"""
@@ -87,6 +116,13 @@ class LevelFirst(arcade.View):
         for visible in self.visible_lists:
             visible.draw()
         self.shaker.readjust_camera()
+
+        any_key_text = arcade.Text(f"Score: {self.gems - len(self.gems_list)}",
+                                   0, self.window.height - 25,
+                                   arcade.color.PURPLE, font_size=20, anchor_x="left", batch=self.batch)
+
+        self.gui_camera.use()
+        self.batch.draw()
 
     def on_update(self, delta_time: float):
         self.physics_engine.update()
@@ -151,7 +187,10 @@ class LevelFirst(arcade.View):
         if key == arcade.key.UP:
             self.player.change_y = 0
 
+
 '----------------------------------------------------------------------------------------------------------------------'
+
+
 class LevelSecond(arcade.View):
     def __init__(self):
         super().__init__()
@@ -167,7 +206,6 @@ class LevelSecond(arcade.View):
             falloff_time=0.5,
             shake_frequency=10
         )
-
 
         # Инициализируем списки спрайтов.
         self.player = arcade.Sprite(
@@ -215,9 +253,12 @@ class LevelSecond(arcade.View):
         for _ in range(random.randint(10, 15)):
             self.gems_list.append(arcade.Sprite(
                 ':resources:images/items/gold_1.png', TILE_SCALING / 3,
-                70 * random.randint(1 + 1, 14 - 1),
-                70 * random.randint(1 + 1, 6 - 1)
+                                                      70 * random.randint(1 + 1, 14 - 1),
+                                                      70 * random.randint(1 + 1, 6 - 1)
             ))
+        self.gems = len(self.gems_list)
+
+        self.batch = Batch()
 
     def on_draw(self):
         """Отрисовка экрана"""
@@ -229,6 +270,13 @@ class LevelSecond(arcade.View):
             visible.draw()
         self.shaker.readjust_camera()
 
+        any_key_text = arcade.Text(f"Score: {self.gems - len(self.gems_list)}",
+                                   0, self.window.height - 25,
+                                   arcade.color.PURPLE, font_size=20, anchor_x="left", batch=self.batch)
+
+        self.gui_camera.use()
+        self.batch.draw()
+
     def on_update(self, delta_time: float):
         self.physics_engine.update()
         self.shaker.update(delta_time)
@@ -236,7 +284,6 @@ class LevelSecond(arcade.View):
         for gem in arcade.check_for_collision_with_list(self.player, self.gems_list):
             gem.kill()
             self.shaker.start()
-
 
         cam_x, cam_y = self.world_camera.position
         dz_left = cam_x - DEAD_ZONE_W // 2
@@ -293,8 +340,8 @@ class LevelSecond(arcade.View):
 def main():
     """Главная функция"""
     window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-    first_level = LevelFirst()
-    window.show_view(first_level)
+    start_view = StartView()
+    window.show_view(start_view)
     arcade.run()
 
 
