@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="7" tilewidth="128" tileheight="128" infinite="0" nextlayerid="6" nextobjectid="3">
+ <tileset firstgid="1" source="collection.tsx"/>
+ <layer id="1" name="ground" width="20" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh6IAqIY/DwcQFh2jhnUIN4IE5AwolEqMWmJh4qDgDXzgVA
+  </data>
+ </layer>
+ <layer id="4" name="ladders" width="20" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYBhagI1MuVHzqAMAMRAAMQ==
+  </data>
+ </layer>
+ <layer id="5" name="collisions" width="20" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh6oBeKcfHx6RtpoBcLJkYtLjkA5cwIRA==
+  </data>
+ </layer>
+ <layer id="2" name="lava_water" width="20" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAekKWiWSAgQ2XzRgEETMGBkYEpGoYBACGbBIY=
+  </data>
+ </layer>
+ <objectgroup id="3" name="platforms">
+  <object id="1" gid="7" x="1792" y="832" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="890"/>
+    <property name="boundary_right" type="float" value="1152"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="2" gid="7" x="1280" y="832" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="320"/>
+    <property name="boundary_right" type="float" value="704"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

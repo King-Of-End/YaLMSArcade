@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="8" nextobjectid="8">
+ <tileset firstgid="1" source="collection.tsx"/>
+ <layer id="1" name="ground" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAvaAbiVjrbSS1QAMRFA+2IUYAVjMbN0AF6QKxPBjYAYgCC0wWO
+  </data>
+ </layer>
+ <layer id="5" name="entry_exit" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPJJGpbxSMglEw9EEKmfqSKbQXAAJeASo=
+  </data>
+ </layer>
+ <objectgroup id="3" name="platforms">
+  <object id="2" gid="6" x="0" y="2048" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="0"/>
+    <property name="boundary_right" type="float" value="896"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="3" gid="6" x="128" y="2048" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="64"/>
+    <property name="boundary_right" type="float" value="960"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="4" gid="6" x="1792" y="1024" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="64"/>
+    <property name="boundary_right" type="float" value="960"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="5" gid="6" x="1664" y="1024" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="0"/>
+    <property name="boundary_right" type="float" value="896"/>
+    <property name="change_x" type="float" value="2"/>
+   </properties>
+  </object>
+  <object id="6" gid="102" x="896" y="1664" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="256"/>
+    <property name="boundary_right" type="float" value="840"/>
+    <property name="change_x" type="float" value="1"/>
+   </properties>
+  </object>
+  <object id="7" gid="102" x="1152" y="512" width="128" height="128">
+   <properties>
+    <property name="boundary_left" type="float" value="512"/>
+    <property name="boundary_right" type="float" value="960"/>
+    <property name="change_x" type="float" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="7" name="cool" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DwAOuBdsAoIBvIkyhODgAAl2AAeg==
+  </data>
+ </layer>
+ <layer id="4" name="collision" width="15" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAvmADFQxEMZbcPdzAaN0MHTKAAAwDuFQvR
+  </data>
+ </layer>
+</map>
